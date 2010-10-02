@@ -3,11 +3,19 @@
 
 #include "Bug.h"
 
+#ifdef _MSC_VER //TODO make this check better
+#define pre_condition(x) ( (x) || ( Vlinder::Contract::reportFailure("pre-condition failed", #x, __FILE__, __LINE__, "__func__ not supported" ), 0 ) )
+#define require(x) ( (x) || ( Vlinder::Contract::reportFailure("requirement not met", #x, __FILE__, __LINE__, "__func__ not supported" ), 0 ) )
+#define post_condition(x) ( (x) || ( Vlinder::Contract::reportFailure("post-condition failed", #x, __FILE__, __LINE__, "__func__ not supported" ), 0 ) )
+#define ensure(x) ( (x) || ( Vlinder::Contract::reportFailure("failed to ensure", #x, __FILE__, __LINE__, "__func__ not supported" ), 0 ) )
+#define invariant(x) ( (x) || ( Vlinder::Contract::reportFailure("invariant failed", #x, __FILE__, __LINE__, "__func__ not supported" ), 0 ) )
+#else
 #define pre_condition(x) ( (x) || ( Vlinder::Contract::reportFailure("pre-condition failed", #x, __FILE__, __LINE__, __func__ ), 0 ) )
 #define require(x) ( (x) || ( Vlinder::Contract::reportFailure("requirement not met", #x, __FILE__, __LINE__, __func__ ), 0 ) )
 #define post_condition(x) ( (x) || ( Vlinder::Contract::reportFailure("post-condition failed", #x, __FILE__, __LINE__, __func__ ), 0 ) )
 #define ensure(x) ( (x) || ( Vlinder::Contract::reportFailure("failed to ensure", #x, __FILE__, __LINE__, __func__ ), 0 ) )
 #define invariant(x) ( (x) || ( Vlinder::Contract::reportFailure("invariant failed", #x, __FILE__, __LINE__, __func__ ), 0 ) )
+#endif
 
 namespace Vlinder { namespace Contract {
 	class ContractError : public Bug
