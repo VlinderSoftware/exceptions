@@ -1,6 +1,7 @@
 #ifndef vlinder_contract_h
 #define vlinder_contract_h
 
+#include "Details/prologue.h"
 #include "Bug.h"
 
 #ifdef _MSC_VER //TODO make this check better
@@ -44,7 +45,7 @@ namespace Vlinder { namespace Contract {
 		std::string function_;
 	};
 
-	void reportFailure(const char *preamble, const char *expression, const char *file, int line, const char *function);
+	EXCEPTIONS_API void reportFailure(const char *preamble, const char *expression, const char *file, int line, const char *function);
 }}
 
 #endif
