@@ -1,4 +1,4 @@
-#include "Contract.h"
+#include "contract.h"
 #include <sstream>
 
 using namespace std;

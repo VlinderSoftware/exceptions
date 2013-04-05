@@ -1,8 +1,8 @@
 #ifndef vlinder_contract_h
 #define vlinder_contract_h
 
-#include "Details/prologue.h"
-#include "Bug.h"
+#include "details/prologue.h"
+#include "bug.h"
 
 #ifdef _MSC_VER //TODO make this check better
 #define pre_condition(x) ( (x) || ( Vlinder::Contract::reportFailure("pre-condition failed", #x, __FILE__, __LINE__, "__func__ not supported" ), 0 ) )
