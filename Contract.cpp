@@ -1,3 +1,12 @@
+/* Exceptions library
+ * Generic support for exceptions and Contract theory
+ * Copyright (C) 2010-2012  Vlinder Software
+ *
+ * $$__LICENSE__$$
+ *
+ * To obtain a different license, or for more information about this
+ * and related software, contact us at <support@vlinder.ca>
+ */
 #include "Contract.h"
 #include <sstream>
 
