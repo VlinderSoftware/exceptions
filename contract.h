@@ -1,6 +1,5 @@
-/* Exceptions library
- * Generic support for exceptions and Contract theory
- * Copyright (C) 2010-2012  Vlinder Software
+/* Exceptions library - Generic support for exceptions and Contract theory
+ * Copyright (C) $$__YEAR__$$  Vlinder Software
  *
  * $$__LICENSE__$$
  *
