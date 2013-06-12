@@ -15,7 +15,7 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})
 
-add_library(libexceptions 
+add_library(exceptions 
 	contract.cpp)
 
 add_executable(test_exceptions test.cpp)
