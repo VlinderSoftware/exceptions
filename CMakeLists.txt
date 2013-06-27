@@ -19,7 +19,7 @@ add_library(exceptions
 	contract.cpp)
 
 add_executable(test_exceptions test.cpp)
-target_link_libraries(test_exceptions libexceptions)
+target_link_libraries(test_exceptions exceptions)
 
 add_test(test_exceptions ${EXECUTABLE_OUTPUT_PATH}/test_exceptions)
 
