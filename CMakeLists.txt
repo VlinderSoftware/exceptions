@@ -10,13 +10,16 @@ enable_testing()
 include(Dart)
 
 if(WIN32)
+	set(EXCEPTIONS_TARGET_PLATFORM_NAME win32)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -DEXCEPTIONS_EXPORTS)
+else()
+	set(EXCEPTIONS_TARGET_PLATFORM_NAME other)
 endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})
 
 add_library(exceptions 
-	contract.cpp)
+	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp)
 
 add_executable(test_exceptions test.cpp)
 target_link_libraries(test_exceptions exceptions)

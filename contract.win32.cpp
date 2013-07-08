@@ -8,7 +8,7 @@
  */
 #include "contract.h"
 #include <sstream>
-
+#include <windows.h>
 using namespace std;
 
 namespace Vlinder { namespace Contract {
@@ -28,6 +28,7 @@ namespace Vlinder { namespace Contract {
 			<< ": "
 			<< expression
 			;
+		DebugBreak();
 		throw ContractError(ss.str(), file, line, function);
 	}
 }}
