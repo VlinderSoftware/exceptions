@@ -21,5 +21,7 @@ namespace Vlinder {
 	};
 }
 
+#define bug_if(c, m) { if (c) throw Vlinder::Bug(m); }
+
 #endif
 

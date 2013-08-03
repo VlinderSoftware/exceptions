@@ -21,10 +21,15 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})
 add_library(exceptions 
 	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp)
 
-add_executable(test_exceptions test.cpp)
-target_link_libraries(test_exceptions exceptions)
 
-add_test(test_exceptions ${EXECUTABLE_OUTPUT_PATH}/test_exceptions)
+foreach (test
+	exceptions
+	bug
+	)
+	add_executable(test_${test} tests/${test}.cpp)
+	target_link_libraries(test_${test} exceptions ${CMAKE_THREAD_LIBS_INIT})
+	add_test(test_${test} ${EXECUTABLE_OUTPUT_PATH}/test_${test})
+endforeach (test)
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
