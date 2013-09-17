@@ -20,6 +20,17 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})
 
 add_library(exceptions 
 	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp)
+if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+else()
+	if (WIN32)
+		add_custom_command(
+			TARGET exceptions
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions.dll"
+			VERBATIM
+			)
+	endif()
+endif()
 
 
 foreach (test
