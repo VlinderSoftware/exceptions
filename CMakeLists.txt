@@ -10,18 +10,44 @@ enable_testing()
 include(Dart)
 
 if(WIN32)
-	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS)
+	set(EXCEPTIONS_TARGET_PLATFORM_NAME win32)
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -DEXCEPTIONS_EXPORTS)
+else()
+	set(EXCEPTIONS_TARGET_PLATFORM_NAME other)
 endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})
 
-add_library(libexceptions 
-	Contract.cpp)
+add_library(exceptions SHARED
+	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp)
+if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+else()
+	if (CYGWIN)
+		add_custom_command(
+			TARGET exceptions
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions.dll" "${CMAKE_BINARY_DIR}/cygexceptions.dll"
+			VERBATIM
+			)
+	elseif (WIN32)
+		add_custom_command(
+			TARGET exceptions
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions.dll"
+			VERBATIM
+			)
+	endif()
+endif()
 
-add_executable(test_exceptions test.cpp)
-target_link_libraries(test_exceptions libexceptions)
 
-add_test(test_exceptions ${EXECUTABLE_OUTPUT_PATH}/test_exceptions)
+foreach (test
+	exceptions
+	bug
+	)
+	add_executable(test_${test} tests/${test}.cpp)
+	target_link_libraries(test_${test} exceptions ${CMAKE_THREAD_LIBS_INIT})
+	add_test(test_${test} ${EXECUTABLE_OUTPUT_PATH}/test_${test})
+endforeach (test)
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
