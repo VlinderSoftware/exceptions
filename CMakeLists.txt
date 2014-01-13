@@ -18,11 +18,18 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})
 
-add_library(exceptions 
+add_library(exceptions SHARED
 	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp)
 if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 else()
-	if (WIN32)
+	if (CYGWIN)
+		add_custom_command(
+			TARGET exceptions
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions.dll" "${CMAKE_BINARY_DIR}/cygexceptions.dll"
+			VERBATIM
+			)
+	elseif (WIN32)
 		add_custom_command(
 			TARGET exceptions
 			POST_BUILD
