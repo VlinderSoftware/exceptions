@@ -11,7 +11,7 @@
 
 #ifndef EXCEPTIONS_API
 #	if defined(WIN32) && !defined(__CYGWIN32__) && !defined(EXCEPTIONS_LINK_STATIC)
-#		ifdef EXCEPTIONS_EXPORTS
+#		if defined(EXCEPTIONS_EXPORTS) || defined(exceptions_EXPORTS) || defined(exceptions_relacy_EXPORTS)
 #			define EXCEPTIONS_API __declspec(dllexport)
 #		else
 #			define EXCEPTIONS_API __declspec(dllimport)

@@ -46,11 +46,23 @@ else()
 			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions.dll" "${CMAKE_BINARY_DIR}/cygexceptions.dll"
 			VERBATIM
 			)
+		add_custom_command(
+			TARGET exceptions
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions_relacy.dll" "${CMAKE_BINARY_DIR}/cygexceptions_relacy.dll"
+			VERBATIM
+			)
 	elseif (WIN32)
 		add_custom_command(
 			TARGET exceptions
 			POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions.dll"
+			VERBATIM
+			)
+		add_custom_command(
+			TARGET exceptions
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions_relacy.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions_relacy.dll"
 			VERBATIM
 			)
 	endif()
