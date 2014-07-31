@@ -16,10 +16,27 @@ else()
 	set(EXCEPTIONS_TARGET_PLATFORM_NAME other)
 endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/relacy/relacy_2_4)
+
+set(EXCEPTIONS_SOURCES
+	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp
+	)
 
 add_library(exceptions SHARED
-	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp)
+	${EXCEPTIONS_SOURCES}
+	)
+add_library(exceptions_relacy SHARED
+	${EXCEPTIONS_SOURCES}
+	)
+if (WIN32)
+	set_target_properties(exceptions_relacy
+		PROPERTIES COMPILE_FLAGS "/FI${CMAKE_SOURCE_DIR}\\tests\\relacy.hpp /wd4290"
+		)
+else()
+	set_target_properties(exceptions_relacy
+		PROPERTIES COMPILE_FLAGS "-include tests/relacy.hpp"
+		)
+endif()
 if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 else()
 	if (CYGWIN)
