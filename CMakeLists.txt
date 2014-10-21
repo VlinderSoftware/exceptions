@@ -25,6 +25,7 @@ set(EXCEPTIONS_SOURCES
 add_library(exceptions SHARED
 	${EXCEPTIONS_SOURCES}
 	)
+if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 add_library(exceptions_relacy SHARED
 	${EXCEPTIONS_SOURCES}
 	)
@@ -37,6 +38,7 @@ else()
 		PROPERTIES COMPILE_FLAGS "-include tests/relacy.hpp"
 		)
 endif()
+endif()
 if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 else()
 	if (CYGWIN)
@@ -46,12 +48,14 @@ else()
 			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions.dll" "${CMAKE_BINARY_DIR}/cygexceptions.dll"
 			VERBATIM
 			)
+		if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 		add_custom_command(
-			TARGET exceptions
+			TARGET exceptions_relacy
 			POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions_relacy.dll" "${CMAKE_BINARY_DIR}/cygexceptions_relacy.dll"
 			VERBATIM
 			)
+		endif()
 	elseif (WIN32)
 		add_custom_command(
 			TARGET exceptions
@@ -59,16 +63,18 @@ else()
 			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions.dll"
 			VERBATIM
 			)
+		if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 		add_custom_command(
-			TARGET exceptions
+			TARGET exceptions_relacy
 			POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions_relacy.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions_relacy.dll"
 			VERBATIM
 			)
+		endif()
 	endif()
 endif()
 
-
+if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 foreach (test
 	exceptions
 	bug
@@ -77,6 +83,7 @@ foreach (test
 	target_link_libraries(test_${test} exceptions ${CMAKE_THREAD_LIBS_INIT})
 	add_test(test_${test} ${EXECUTABLE_OUTPUT_PATH}/test_${test})
 endforeach (test)
+endif()
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
