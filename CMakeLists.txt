@@ -78,14 +78,16 @@ else()
 	endif()
 endif()
 
-foreach (test
-	exceptions
-	bug
-	)
-	add_executable(test_${test} tests/${test}.cpp)
-	target_link_libraries(test_${test} exceptions ${CMAKE_THREAD_LIBS_INIT})
-	add_test(test_${test} ${EXECUTABLE_OUTPUT_PATH}/test_${test})
-endforeach (test)
+if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+	foreach (test
+		exceptions
+		bug
+		)
+		add_executable(test_${test} tests/${test}.cpp)
+		target_link_libraries(test_${test} exceptions ${CMAKE_THREAD_LIBS_INIT})
+		add_test(test_${test} ${EXECUTABLE_OUTPUT_PATH}/test_${test})
+	endforeach (test)
+endif()
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
