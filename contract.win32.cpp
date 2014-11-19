@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "contract.h"
+#include "contract.hpp"
 #include <sstream>
 #include <windows.h>
 using namespace std;
