@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "Contract.h"
+#include "contract.h"
 #include <sstream>
-
 using namespace std;
 
 namespace Vlinder { namespace Contract {
