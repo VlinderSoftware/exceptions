@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "contract.h"
+#include "contract.hpp"
 #include <sstream>
 using namespace std;
 
@@ -37,3 +37,4 @@ namespace Vlinder { namespace Contract {
 		throw ContractError(ss.str(), file, line, function);
 	}
 }}
+
