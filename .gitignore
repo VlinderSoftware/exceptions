@@ -1,3 +1,11 @@
 *~
 *.bak
 *.orig
+*.vcxproj
+*.filters
+CMakeFiles/
+CTestTestfile.cmake
+Debug/
+DartConfiguration.tcl
+cmake_install.cmake
+exceptions.sln

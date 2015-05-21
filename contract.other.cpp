@@ -6,7 +6,7 @@
  * To obtain a different license, or for more information about this
  * and related software, contact us at <support@vlinder.ca>
  */
-#include "contract.h"
+#include "contract.hpp"
 #include <sstream>
 using namespace std;
 
@@ -30,3 +30,4 @@ namespace Vlinder { namespace Contract {
 		throw ContractError(ss.str(), file, line, function);
 	}
 }}
+
