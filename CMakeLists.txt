@@ -29,28 +29,22 @@ set(EXCEPTIONS_SOURCES
 add_library(exceptions SHARED
 	${EXCEPTIONS_SOURCES}
 	)
-if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-add_library(exceptions_relacy SHARED
-	${EXCEPTIONS_SOURCES}
-	)
-if (WIN32)
-	set_target_properties(exceptions_relacy
-		PROPERTIES COMPILE_FLAGS "/FI${CMAKE_SOURCE_DIR}\\tests\\relacy.hpp /wd4290"
-		)
-else()
-	set_target_properties(exceptions_relacy
-		PROPERTIES COMPILE_FLAGS "-include tests/relacy.hpp"
-		)
+if (EXCEPTIONS_BUILD_FOR_RELACY)
 	if (WIN32)
+		add_library(exceptions_relacy SHARED
+			${EXCEPTIONS_SOURCES}
+			)
 		set_target_properties(exceptions_relacy
 			PROPERTIES COMPILE_FLAGS "/FI${CMAKE_SOURCE_DIR}\\tests\\relacy.hpp /wd4290"
 			)
 	else()
+		add_library(exceptions_relacy SHARED
+			${EXCEPTIONS_SOURCES}
+			)
 		set_target_properties(exceptions_relacy
-			PROPERTIES COMPILE_FLAGS "-include tests/relacy.hpp"
+			PROPERTIES COMPILE_FLAGS "-include ${CMAKE_SOURCE_DIR}/tests/relacy.hpp"
 			)
 	endif()
-endif()
 endif()
 if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 else()

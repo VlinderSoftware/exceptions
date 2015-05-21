@@ -6,7 +6,7 @@
  * To obtain a different license, or for more information about this
  * and related software, contact us at <support@vlinder.ca>
  */
-#include "../bug.h"
+#include "../bug.hpp"
 #include <cassert>
 #include <cstring>
 
