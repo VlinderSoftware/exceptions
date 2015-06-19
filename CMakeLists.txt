@@ -93,7 +93,6 @@ if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 		add_test(test_${test} ${EXECUTABLE_OUTPUT_PATH}/test_${test})
 	endforeach (test)
 endif()
-endif()
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
