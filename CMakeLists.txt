@@ -83,7 +83,7 @@ else()
 	endif()
 endif()
 
-if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	foreach (test
 		exceptions
 		bug
@@ -92,6 +92,7 @@ if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 		target_link_libraries(test_${test} exceptions ${CMAKE_THREAD_LIBS_INIT})
 		add_test(test_${test} ${EXECUTABLE_OUTPUT_PATH}/test_${test})
 	endforeach (test)
+endif()
 endif()
 
 # add a target to generate API documentation with Doxygen
