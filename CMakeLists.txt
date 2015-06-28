@@ -104,3 +104,4 @@ add_custom_target(exceptions-doc
 	COMMENT "Generating API documentation with Doxygen" VERBATIM
 	)
 endif(DOXYGEN_FOUND)
+
