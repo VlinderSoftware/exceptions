@@ -48,40 +48,6 @@ if (EXCEPTIONS_BUILD_FOR_RELACY)
 			)
 	endif()
 endif()
-if (${PROJECT_BINARY_DIR} STREQUAL ${CMAKE_BINARY_DIR})
-else()
-	if (CYGWIN)
-		add_custom_command(
-			TARGET exceptions
-			POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions.dll" "${CMAKE_BINARY_DIR}/cygexceptions.dll"
-			VERBATIM
-			)
-		if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-		add_custom_command(
-			TARGET exceptions_relacy
-			POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/cygexceptions_relacy.dll" "${CMAKE_BINARY_DIR}/cygexceptions_relacy.dll"
-			VERBATIM
-			)
-		endif()
-	elseif (WIN32)
-		add_custom_command(
-			TARGET exceptions
-			POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions.dll"
-			VERBATIM
-			)
-		if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-		add_custom_command(
-			TARGET exceptions_relacy
-			POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_BINARY_DIR}/$(Configuration)/exceptions_relacy.dll" "${CMAKE_BINARY_DIR}/$(Configuration)/exceptions_relacy.dll"
-			VERBATIM
-			)
-		endif()
-	endif()
-endif()
 
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	foreach (test
