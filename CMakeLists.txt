@@ -26,6 +26,8 @@ endif()
 
 set(EXCEPTIONS_SOURCES
 	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp
+	contract.hpp
+	exception.hpp
 	)
 
 add_library(exceptions SHARED
