@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 2.8.4)
-
 project(exceptions)
-set(EXCEPTIONS_VERSION_MAJOR 1)
-set(EXCEPTIONS_VERSION_MINOR 1)
-set(EXCEPTIONS_VERSION_REVISION 00)
-set(EXCEPTIONS_VERSION_SPECIAL alpha1)
+include(${CMAKE_SOURCE_DIR}/cmake/settings.cmake)
 
 option(EXCEPTIONS_BUILD_FOR_RELACY OFF)
 
