@@ -9,19 +9,12 @@ enable_testing()
 include(Dart)
 endif()
 
-if(WIN32)
-	set(EXCEPTIONS_TARGET_PLATFORM_NAME win32)
-	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -DEXCEPTIONS_EXPORTS)
-else()
-	set(EXCEPTIONS_TARGET_PLATFORM_NAME other)
-endif()
-
 if (EXCEPTIONS_BUILD_FOR_RELACY)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/relacy/relacy_2_4)
 endif()
 
 set(EXCEPTIONS_SOURCES
-	contract.${EXCEPTIONS_TARGET_PLATFORM_NAME}.cpp
+	contract.${VLINDER_TARGET_PLATFORM_NAME}.cpp
 	contract.hpp
 	exception.hpp
 	)
