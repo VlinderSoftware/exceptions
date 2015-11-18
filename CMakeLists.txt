@@ -16,6 +16,7 @@ endif()
 set(EXCEPTIONS_SOURCES
 	contract.${VLINDER_TARGET_PLATFORM_NAME}.cpp
 	contract.hpp
+	details/prologue.hpp
 	exception.hpp
 	)
 

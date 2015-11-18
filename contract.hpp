@@ -9,7 +9,7 @@
 #ifndef vlinder_contract_h
 #define vlinder_contract_h
 
-#include "details/prologue.h"
+#include "details/prologue.hpp"
 #include "bug.hpp"
 
 #ifdef _MSC_VER //TODO make this check better
