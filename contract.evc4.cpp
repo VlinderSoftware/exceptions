@@ -1,11 +1,15 @@
-/* Exceptions library - Generic support for exceptions and Contract theory
- * Copyright (C) $$__YEAR__$$  Vlinder Software
- *
- * $$__LICENSE__$$
- *
- * To obtain a different license, or for more information about this
- * and related software, contact us at <support@vlinder.ca>
- */
+/* Copyright 2016  Vlinder Software
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. */
 #include "contract.h"
 #include <windows.h>
 
