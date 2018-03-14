@@ -1,19 +1,15 @@
-cmake_minimum_required(VERSION 2.8.4)
-project(exceptions)
+cmake_minimum_required(VERSION 3.7)
+project(exceptions VERSION 1.0.00 LANGUAGES CXX)
 include(${CMAKE_SOURCE_DIR}/cmake/settings.cmake)
-
-option(EXCEPTIONS_BUILD_FOR_RELACY OFF)
+include(GNUInstallDirs)
 
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 enable_testing()
-include(Dart)
-endif()
-
-if (EXCEPTIONS_BUILD_FOR_RELACY)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/relacy/relacy_2_4)
+include(CTest)
 endif()
 
 set(EXCEPTIONS_SOURCES
+	bug.hpp
 	contract.${VLINDER_TARGET_PLATFORM_NAME}.cpp
 	contract.hpp
 	details/prologue.hpp
@@ -23,24 +19,13 @@ set(EXCEPTIONS_SOURCES
 add_library(exceptions SHARED
 	${EXCEPTIONS_SOURCES}
 	)
-if (EXCEPTIONS_BUILD_FOR_RELACY)
-	if (WIN32)
-		add_library(exceptions_relacy SHARED
-			${EXCEPTIONS_SOURCES}
-			)
-		set_target_properties(exceptions_relacy
-			PROPERTIES COMPILE_FLAGS "/FI${CMAKE_SOURCE_DIR}\\tests\\relacy.hpp /wd4290"
-			)
-	else()
-		add_library(exceptions_relacy SHARED
-			${EXCEPTIONS_SOURCES}
-			)
-		set_target_properties(exceptions_relacy
-			PROPERTIES COMPILE_FLAGS "-include ${CMAKE_SOURCE_DIR}/tests/relacy.hpp"
-			)
-	endif()
-endif()
-
+set_target_properties(exceptions PROPERTIES VERSION ${PROJECT_VERSION})
+set_target_properties(exceptions PROPERTIES SOVERSION 1)
+install(TARGETS exceptions
+	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	)
+install(FILES bug.hpp contract.hpp exception.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/vlinder/exceptions)
+install(FILES details/prologue.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/vlinder/exceptions/details)
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	foreach (test
 		exceptions
