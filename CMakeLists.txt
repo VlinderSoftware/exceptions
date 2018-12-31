@@ -4,6 +4,21 @@ include(${CMAKE_SOURCE_DIR}/cmake/settings.cmake)
 include(GNUInstallDirs)
 
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+set(CPACK_PACKAGE_NAME exceptions)
+set(CPACK_PACKAGE_VENDOR "Vlinder Software")
+set(CPACK_PACKAGE_CONTACT "Ronald Landheer-Cieslak <rlc@vlinder.ca>")
+set(CPACK_PACKAGE_VERSION_MAJOR 1)
+set(CPACK_PACKAGE_VERSION_MINOR 0)
+set(CPACK_PACKAGE_VERSION_PATCH 00)
+set(CPACK_PACKAGE_DESCRIPTION "Generic exceptions support library")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Generic exceptions support library")
+set(CPACK_PACKAGE_DESCRIPTION_FILE ${CMAKE_CURRENT_SOURCE_DIR}/CPack.Description.txt)
+set(CPACK_PACKAGE_HOMEPAGE_URL "http://vlinder.ca")
+set(CPACK_RESOURCE_FILE_README ${CMAKE_CURRENT_SOURCE_DIR}/README.md)
+set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.md)
+set(CPACK_GENERATOR DEB)
+include(CPack)
+
 enable_testing()
 include(CTest)
 endif()
@@ -24,8 +39,8 @@ set_target_properties(exceptions PROPERTIES SOVERSION 1)
 install(TARGETS exceptions
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	)
-install(FILES bug.hpp contract.hpp exception.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/vlinder/exceptions)
-install(FILES details/prologue.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/vlinder/exceptions/details)
+install(FILES bug.hpp contract.hpp exception.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/exceptions)
+install(FILES details/prologue.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/exceptions/details)
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	foreach (test
 		exceptions
