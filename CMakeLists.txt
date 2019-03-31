@@ -37,10 +37,39 @@ add_library(exceptions SHARED
 set_target_properties(exceptions PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(exceptions PROPERTIES SOVERSION 1)
 install(TARGETS exceptions
+	EXPORT ExceptionsTargets
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	)
 install(FILES bug.hpp contract.hpp exception.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/exceptions)
 install(FILES details/prologue.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/exceptions/details)
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+	"${CMAKE_CURRENT_BINARY_DIR}/exceptions/exceptions-config-version.cmake"
+	VERSION ${PROJECT_VERSION}
+	COMPATIBILITY SameMajorVersion
+)
+
+export(EXPORT ExceptionsTargets
+	FILE "${CMAKE_CURRENT_BINARY_DIR}/exceptions/exceptions-targets.cmake"
+	NAMESPACE Vlinder::
+)
+configure_file(exceptions-config.cmake "${CMAKE_CURRENT_BINARY_DIR}/exceptions/exceptions-config.cmake"
+	COPYONLY
+)
+
+set(ConfigPackageLocation lib/cmake/exceptions)
+install(EXPORT ExceptionsTargets
+	FILE exceptions-targets.cmake
+	NAMESPACE Vlinder::
+	DESTINATION ${ConfigPackageLocation}
+)
+install(
+	FILES exceptions-config.cmake "${CMAKE_CURRENT_BINARY_DIR}/exceptions/exceptions-config-version.cmake"
+	DESTINATION ${ConfigPackageLocation}
+	COMPONENT Devel
+)
+
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 	foreach (test
 		exceptions
