@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.7)
 project(exceptions VERSION 1.0.00 LANGUAGES CXX)
-include(${CMAKE_SOURCE_DIR}/cmake/settings.cmake)
+
+if (EXISTS ${CMAKE_SOURCE_DIR}/cmake/settings.cmake)
+	include(${CMAKE_SOURCE_DIR}/cmake/settings.cmake)
+else()
+	set(VLINDER_TARGET_PLATFORM_NAME posix)
+endif()
+
 include(GNUInstallDirs)
 
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
