@@ -10,13 +10,28 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License. */
-#include "contract.h"
-#include <windows.h>
+#include "contract.hpp"
+#include <sstream>
+using namespace std;
 
 namespace Vlinder { namespace Contract {
-	EXCEPTIONS_API void reportFailure(const char *preamble, const char *expression, const char *file, int line, const char *function)
+	exceptions_EXPORT void reportFailure(const char *preamble, const char *expression, const char *file, int line, const char *function)
 	{
-		DebugBreak();
-		throw ContractError("", file, line, function);
+		stringstream ss;
+		ss
+			<< file
+			<< "("
+			<< line
+			<< ")"
+			<< "BUG: "
+			<< "(" 
+			<< function 
+			<< ")"
+			<< preamble
+			<< ": "
+			<< expression
+			;
+		throw ContractError(ss.str(), file, line, function);
 	}
 }}
+

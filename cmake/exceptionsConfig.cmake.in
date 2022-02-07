@@ -1,0 +1,52 @@
+# exceptionsConfig.cmake
+# -------------------
+#
+# exceptions cmake module.
+# This module sets the following variables in your project:
+#
+# ::
+#
+#   exceptions_FOUND - true if exceptions found on the system
+#   exceptions_VERSION - exceptions version in format Major.Minor.Release
+#
+#
+# Exported targets:
+#
+# ::
+#
+# If exceptions is found, this module defines the following :prop_tgt:`IMPORTED`
+# targets. ::
+#   exceptions::exceptions-shared - the main exceptions shared library with header & defs attached.
+#   exceptions::exceptions-static - the main exceptions static library with header & defs attached.
+#   exceptions::hello-world_wDSO - the hello-world program for the exceptions, linked
+#                               against the dynamic shared object.
+#   exceptions::hello-world_wAR - the hello-world program for the exceptions, linked
+#                               against the static archive.
+#
+#
+# Suggested usage:
+#
+# ::
+#
+#   find_package(exceptions)
+#   find_package(exceptions 1.1.7 CONFIG REQUIRED)
+#
+#
+# The following variables can be set to guide the search for this package:
+#
+# ::
+#
+#   exceptions_DIR - CMake variable, set to directory containing this Config file
+#   CMAKE_PREFIX_PATH - CMake variable, set to root directory of this package
+#   PATH - environment variable, set to bin directory of this package
+#   CMAKE_DISABLE_FIND_PACKAGE_exceptions - CMake variable, disables
+#       find_package(exceptions) perhaps to force internal build
+
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/exceptionsTargets.cmake")
+check_required_components(
+  "exceptions-shared"
+  "exceptions-static"
+  )
+

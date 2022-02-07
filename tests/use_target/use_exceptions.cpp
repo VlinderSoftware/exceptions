@@ -10,28 +10,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License. */
-#include "contract.hpp"
-#include <sstream>
-using namespace std;
+#include <exceptions/bug.hpp>
+#include <cassert>
+#include <cstring>
 
-namespace Vlinder { namespace Contract {
-	EXCEPTIONS_API void reportFailure(const char *preamble, const char *expression, const char *file, int line, const char *function)
+int main()
+{
+	try
 	{
-		stringstream ss;
-		ss
-			<< file
-			<< "("
-			<< line
-			<< ")"
-			<< "BUG: "
-			<< "(" 
-			<< function 
-			<< ")"
-			<< preamble
-			<< ": "
-			<< expression
-			;
-		throw ContractError(ss.str(), file, line, function);
+		bug_if(1, "test");
 	}
-}}
-
+	catch (std::logic_error const &e)
+	{
+		assert(strcmp(e.what(), "test") == 0);
+	}
+	return 0;
+}
