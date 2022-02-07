@@ -13,7 +13,7 @@
 #ifndef vlinder_contract_h
 #define vlinder_contract_h
 
-#include "details/prologue.hpp"
+#include "exceptions-export.h"
 #include "bug.hpp"
 
 #ifdef assert
@@ -63,7 +63,7 @@ namespace Vlinder { namespace Contract {
 		std::string function_;
 	};
 
-	EXCEPTIONS_API void reportFailure(const char *preamble, const char *expression, const char *file, int line, const char *function);
+	exceptions_EXPORT void reportFailure(const char *preamble, const char *expression, const char *file, int line, const char *function);
 }}
 
 #endif
