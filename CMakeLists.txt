@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 
 project(exceptions
   LANGUAGES CXX
-  VERSION 1.0.0
+  VERSION 1.1.0
   )
 
 # <<< General set up >>>
