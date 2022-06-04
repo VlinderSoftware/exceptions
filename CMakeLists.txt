@@ -53,7 +53,7 @@ endforeach()
 
 add_subdirectory(src)
 
-enable_testing()
+include(CTest)
 
 add_subdirectory(tests)
 
