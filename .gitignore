@@ -9,3 +9,5 @@ Debug/
 DartConfiguration.tcl
 cmake_install.cmake
 exceptions.sln
+build/
+instdir/
