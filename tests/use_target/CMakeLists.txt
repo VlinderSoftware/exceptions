@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(exceptions 1 REQUIRED CONFIG)
+find_package(exceptions 1.1.0 REQUIRED CONFIG)
 if(exceptions_FOUND)
   get_property(_loc TARGET exceptions::exceptions-shared PROPERTY LOCATION)
   message(STATUS "Found exceptions: ${_loc} (found version ${exceptions_VERSION})")
@@ -48,28 +48,6 @@ cmake_print_properties(
     IMPORTED_LOCATION_RELEASE
     IMPORTED_IMPLIB_DEBUG
     IMPORTED_IMPLIB_RELEASE
-    INTERFACE_COMPILE_DEFINITIONS
-    INTERFACE_COMPILE_OPTIONS
-    INTERFACE_INCLUDE_DIRECTORIES
-    INTERFACE_LINK_LIBRARIES
-  )
-
-cmake_print_properties(
-  TARGETS
-    exceptions::hello-world_wDSO
-  PROPERTIES
-    LOCATION
-    INTERFACE_COMPILE_DEFINITIONS
-    INTERFACE_COMPILE_OPTIONS
-    INTERFACE_INCLUDE_DIRECTORIES
-    INTERFACE_LINK_LIBRARIES
-  )
-
-cmake_print_properties(
-  TARGETS
-    exceptions::hello-world_wAR
-  PROPERTIES
-    LOCATION
     INTERFACE_COMPILE_DEFINITIONS
     INTERFACE_COMPILE_OPTIONS
     INTERFACE_INCLUDE_DIRECTORIES
