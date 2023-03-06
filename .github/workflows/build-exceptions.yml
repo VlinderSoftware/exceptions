@@ -15,48 +15,48 @@ jobs:
       matrix:
         config:
           #- {
-          #    name: "Windows Release MinGW",
-          #    artifact: "exceptions-mingw-release.tar.xz",
+          #    name: "Build Windows Release MinGW",
+          #    artifact: "exceptions-mingw-release.tar.bz2",
           #    os: windows-latest,
           #    build_type: "Release",
           #    cc: "gcc",
           #    cxx: "g++"
           #  }
           #- {
-          #    name: "Windows Debug MinGW",
-          #    artifact: "exceptions-mingw-debug.tar.xz",
+          #    name: "Build Windows Debug MinGW",
+          #    artifact: "exceptions-mingw-debug.tar.bz2",
           #    os: windows-latest,
           #    build_type: "Debug",
           #    cc: "gcc",
           #    cxx: "g++"
           #  }
           - {
-              name: "Ubuntu Debug GCC",
-              artifact: "exceptions-ubuntu-debug-gcc.tar.xz",
+              name: "Build Ubuntu Debug GCC",
+              artifact: "exceptions-ubuntu-debug-gcc.tar.bz2",
               os: ubuntu-latest,
               build_type: "Debug",
               cc: "gcc",
               cxx: "g++"
             }
           - {
-              name: "Ubuntu Release GCC",
-              artifact: "exceptions-ubuntu-release-gcc.tar.xz",
+              name: "Build Ubuntu Release GCC",
+              artifact: "exceptions-ubuntu-release-gcc.tar.bz2",
               os: ubuntu-latest,
               build_type: "Release",
               cc: "gcc",
               cxx: "g++"
             }
           - {
-              name: "Ubuntu Debug Clang",
-              artifact: "exceptions-ubuntu-debug-clang.tar.xz",
+              name: "Build Ubuntu Debug Clang",
+              artifact: "exceptions-ubuntu-debug-clang.tar.bz2",
               os: ubuntu-latest,
               build_type: "Debug",
               cc: "clang",
               cxx: "clang++"
             }
           - {
-              name: "Ubuntu Release Clang",
-              artifact: "exceptions-ubuntu-release-clang.tar.xz",
+              name: "Build Ubuntu Release Clang",
+              artifact: "exceptions-ubuntu-release-clang.tar.bz2",
               os: ubuntu-latest,
               build_type: "Release",
               cc: "clang",
@@ -230,7 +230,7 @@ jobs:
 
     - name: Pack
       working-directory: instdir
-      run: cmake -E tar cfv ../${{ matrix.config.artifact }} --format=7zip .
+      run: cmake -E tar cjfv ../${{ matrix.config.artifact }} .
 
     - name: Upload
       uses: actions/upload-artifact@v3
@@ -272,32 +272,32 @@ jobs:
       matrix:
         config:
         - {
-            name: "Ubuntu Debug GCC",
-            artifact: "exceptions-ubuntu-debug-gcc.tar.xz",
+            name: "Publish Ubuntu Debug GCC",
+            artifact: "exceptions-ubuntu-debug-gcc.tar.bz2",
             os: ubuntu-latest,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++"
           }
         - {
-            name: "Ubuntu Release GCC",
-            artifact: "exceptions-ubuntu-release-gcc.tar.xz",
+            name: "Publish Ubuntu Release GCC",
+            artifact: "exceptions-ubuntu-release-gcc.tar.bz2",
             os: ubuntu-latest,
             build_type: "Release",
             cc: "gcc",
             cxx: "g++"
           }
         - {
-            name: "Ubuntu Debug Clang",
-            artifact: "exceptions-ubuntu-debug-clang.tar.xz",
+            name: "Publish Ubuntu Debug Clang",
+            artifact: "exceptions-ubuntu-debug-clang.tar.bz2",
             os: ubuntu-latest,
             build_type: "Debug",
             cc: "clang",
             cxx: "clang++"
           }
         - {
-            name: "Ubuntu Release Clang",
-            artifact: "exceptions-ubuntu-release-clang.tar.xz",
+            name: "Publish Ubuntu Release Clang",
+            artifact: "exceptions-ubuntu-release-clang.tar.bz2",
             os: ubuntu-latest,
             build_type: "Release",
             cc: "clang",
