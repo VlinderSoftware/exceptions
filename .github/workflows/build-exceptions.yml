@@ -186,7 +186,7 @@ jobs:
           message(FATAL_ERROR "Running tests failed!")
         endif()
         execute_process(
-          COMMAND cmake -S ../tests/use_target -B ./build_use_target -GNinja -Dexceptions_DIR=$ENV{GITHUB_WORKSPACE}/instdir/share/cmake/exceptions -DCMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
+          COMMAND cmake -S ../tests/use_target -B ./build_use_target -GNinja -Dexceptions_DIR=$ENV{GITHUB_WORKSPACE}/instdir/share/cmake/exceptions -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
           WORKING_DIRECTORY build 
           RESULT_VARIABLE result
           OUTPUT_VARIABLE output
@@ -200,7 +200,7 @@ jobs:
           message(FATAL_ERROR "Running tests failed!")
         endif()
         execute_process(
-          COMMAND cmake ---build ./build_use_target --config=$ENV{BUILD_TYPE}
+          COMMAND cmake ---build ./build_use_target --config=${{ matrix.config.build_type }}
           WORKING_DIRECTORY build 
           RESULT_VARIABLE result
           OUTPUT_VARIABLE output
