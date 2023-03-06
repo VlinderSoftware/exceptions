@@ -232,7 +232,6 @@ jobs:
       working-directory: instdir
       run: cmake -E tar cfv ../${{ matrix.config.artifact }} --format=7zip .
 
-
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
@@ -273,20 +272,36 @@ jobs:
       matrix:
         config:
         - {
-            name: "Windows Latest MSVC", artifact: "Windows-MSVC.7z",
-            os: ubuntu-latest
+            name: "Ubuntu Debug GCC",
+            artifact: "exceptions-ubuntu-debug-gcc.tar.xz",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
           }
         - {
-            name: "Windows Latest MinGW", artifact: "Windows-MinGW.7z",
-            os: ubuntu-latest
+            name: "Ubuntu Release GCC",
+            artifact: "exceptions-ubuntu-release-gcc.tar.xz",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "gcc",
+            cxx: "g++"
           }
         - {
-            name: "Ubuntu Latest GCC", artifact: "Linux.7z",
-            os: ubuntu-latest
+            name: "Ubuntu Debug Clang",
+            artifact: "exceptions-ubuntu-debug-clang.tar.xz",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "clang",
+            cxx: "clang++"
           }
         - {
-            name: "macOS Latest Clang", artifact: "macOS.7z",
-            os: ubuntu-latest
+            name: "Ubuntu Release Clang",
+            artifact: "exceptions-ubuntu-release-clang.tar.xz",
+            os: ubuntu-latest,
+            build_type: "Release",
+            cc: "clang",
+            cxx: "clang++"
           }
     needs: release
 
