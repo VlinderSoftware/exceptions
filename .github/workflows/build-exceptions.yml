@@ -161,6 +161,10 @@ jobs:
           message("::error::${error_message}")
           message(FATAL_ERROR "Build failed")
         endif()
+
+    - name: Install Strip
+      run: cmake --install build --prefix instdir --strip
+
     - name: Run tests
       shell: cmake -P {0}
       run: |
@@ -181,9 +185,6 @@ jobs:
           message("::error::${test_results}")
           message(FATAL_ERROR "Running tests failed!")
         endif()
-    - name: Install Strip
-      run: cmake --install build --prefix instdir --strip
-
 
     - name: Pack
       working-directory: instdir
