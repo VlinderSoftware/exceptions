@@ -5,7 +5,7 @@ add_test(
 			-H${CMAKE_CURRENT_LIST_DIR}/use_target
 			-B${CMAKE_CURRENT_BINARY_DIR}/build_use-target
 			-G${CMAKE_GENERATOR}
-			-Dexceptions_DIR=../instdir
+			-Dexceptions_DIR=${CMAKE_INSTALL_PREFIX}/${INSTALL_CMAKEDIR}
 			-DCMAKE_BUILD_TYPE=$<CONFIGURATION>
 )
 set_tests_properties(use-target_configure
@@ -45,15 +45,15 @@ set_tests_properties(use-target_test
 )
 unset(_test_target)
 
-#add_test(
-#	NAME use-target_cleanup
-#	COMMAND
-#		${CMAKE_COMMAND}
-#			-E remove_directory
-#			${CMAKE_CURRENT_BINARY_DIR}/build_use-target
-#)
-#set_tests_properties(use-target_cleanup
-#	PROPERTIES
-#		FIXTURES_CLEANUP use-target
-#)
+add_test(
+	NAME use-target_cleanup
+	COMMAND
+		${CMAKE_COMMAND}
+			-E remove_directory
+			${CMAKE_CURRENT_BINARY_DIR}/build_use-target
+)
+set_tests_properties(use-target_cleanup
+	PROPERTIES
+		FIXTURES_CLEANUP use-target
+)
 
