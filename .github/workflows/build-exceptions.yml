@@ -200,7 +200,7 @@ jobs:
           message(FATAL_ERROR "Running tests failed!")
         endif()
         execute_process(
-          COMMAND cmake ---build ./build_use_target --config=${{ matrix.config.build_type }}
+          COMMAND cmake ---build ./build_use_target --config ${{ matrix.config.build_type }}
           WORKING_DIRECTORY build 
           RESULT_VARIABLE result
           OUTPUT_VARIABLE output
