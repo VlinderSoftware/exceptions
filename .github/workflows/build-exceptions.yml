@@ -1,0 +1,10 @@
+name: build-exceptions
+run-name: $({ github.actor }) building Vlinder exceptions
+on: [push]
+jobs:
+  configure-debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-cmake@v10.3
