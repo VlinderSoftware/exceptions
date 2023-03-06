@@ -5,7 +5,7 @@ add_test(
 			-H${CMAKE_CURRENT_LIST_DIR}/use_target
 			-B${CMAKE_CURRENT_BINARY_DIR}/build_use-target
 			-G${CMAKE_GENERATOR}
-			-Dexceptions_DIR=${CMAKE_INSTALL_PREFIX}/${INSTALL_CMAKEDIR}
+			-Dexceptions_DIR=../instdir
 			-DCMAKE_BUILD_TYPE=$<CONFIGURATION>
 )
 set_tests_properties(use-target_configure
