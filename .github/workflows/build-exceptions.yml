@@ -14,22 +14,22 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {
-              name: "Windows Release MinGW",
-              artifact: "exceptions-mingw-release.tar.xz",
-              os: windows-latest,
-              build_type: "Release",
-              cc: "gcc",
-              cxx: "g++"
-            }
-          - {
-              name: "Windows Debug MinGW",
-              artifact: "exceptions-mingw-debug.tar.xz",
-              os: windows-latest,
-              build_type: "Debug",
-              cc: "gcc",
-              cxx: "g++"
-            }
+          #- {
+          #    name: "Windows Release MinGW",
+          #    artifact: "exceptions-mingw-release.tar.xz",
+          #    os: windows-latest,
+          #    build_type: "Release",
+          #    cc: "gcc",
+          #    cxx: "g++"
+          #  }
+          #- {
+          #    name: "Windows Debug MinGW",
+          #    artifact: "exceptions-mingw-debug.tar.xz",
+          #    os: windows-latest,
+          #    build_type: "Debug",
+          #    cc: "gcc",
+          #    cxx: "g++"
+          #  }
           - {
               name: "Ubuntu Debug GCC",
               artifact: "exceptions-ubuntu-debug-gcc.tar.xz",
