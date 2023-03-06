@@ -172,7 +172,7 @@ jobs:
         ProcessorCount(N)
         set(ENV{CTEST_OUTPUT_ON_FAILURE} "ON")
         execute_process(
-          COMMAND cmake -S ../tests/use_target -B ./build_use_target -GNinja -Dexceptions_DIR=../instdir/share/cmake/exceptions -DCMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
+          COMMAND cmake -S ../tests/use_target -B ./build_use_target -GNinja -Dexceptions_DIR=${CMAKE_CURRENT_SOURCE_DIR}/../instdir/share/cmake/exceptions -DCMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
           WORKING_DIRECTORY build 
           RESULT_VARIABLE result
           OUTPUT_VARIABLE output
